@@ -9,7 +9,6 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
 {
     ui->setupUi(this);
 
-    model->setColor(QColor(Qt::black));
 
     ui->canvas->setImage(model->getCurrentFrame());
     connect(ui->canvas,

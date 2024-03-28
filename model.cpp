@@ -1,4 +1,5 @@
 #include "model.h"
+#include <iostream>
 
 Model::Model(QObject *parent)
     : QObject(parent)
@@ -42,14 +43,17 @@ void Model::setColor(QColor color)
     if(!checkHistory(color))//This method
     {
         //If the color is not repeated, then update the display with the new color in the history pallette
-        for(int i=3; i>0;i--)
-            std::swap(recentColors[i], recentColors[i+1]);
+        for(int i=4; i>0;i--)
+        {
+            recentColors[i] = recentColors[i-1];
+        }
         recentColors[0] = color;
     }
 
     //And set the color to the newly selected color
     currentColor = color;
     //Notify the view
+
     emit updateColorPallette(recentColors);
 
 }
@@ -61,10 +65,11 @@ bool Model::checkHistory(QColor newColor)
         if(recentColors[i] == newColor)//if it is in the color pallette
         {
             //Move the color up to the front of the array, but keep the ordering of the other elements
-            for(int swapIndex=i; swapIndex>0;swapIndex--)
+            for(int index=i; index>0;index--)
             {
-                std::swap(recentColors[i],recentColors[i-1]);
+                recentColors[index] = recentColors[index-1];
             }
+            recentColors[0] = newColor;
             return true;
         }
     //The array is always length 5 so if we made if here we are home free
