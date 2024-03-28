@@ -58,6 +58,11 @@ void Model::setColor(QColor color)
 
 }
 
+void Model::palletteColorSelected(int index)
+{
+    setColor(recentColors[index]);
+}
+
 bool Model::checkHistory(QColor newColor)
 {
     //Check to see if the color is in the recent pallette

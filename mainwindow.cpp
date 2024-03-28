@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QColorDialog>
+#include <iostream>
 
 MainWindow::MainWindow(Model *model, QWidget *parent)
     : QMainWindow(parent)
@@ -31,6 +32,10 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &MainWindow::userSelectedColor,
             model,
             &Model::setColor);
+    connect(this,
+            &MainWindow::userPalletteSelect,
+            model,
+            &Model::palletteColorSelected);
 }
 
 MainWindow::~MainWindow()
@@ -74,5 +79,23 @@ void MainWindow::on_colorPickBtn_clicked()
         // Send the selected color to the model
         emit userSelectedColor(color);
     }
+}
+
+void MainWindow::on_colorhistorybtn1_clicked()
+{
+    std::cout<<"clicked btn1"<<std::endl;
+    emit userPalletteSelect(1);
+}
+void MainWindow::on_colorhistorybtn2_clicked()
+{
+    emit userPalletteSelect(2);
+}
+void MainWindow::on_colorhistorybtn3_clicked()
+{
+    emit userPalletteSelect(3);
+}
+void MainWindow::on_colorhistorybtn4_clicked()
+{
+    emit userPalletteSelect(4);
 }
 

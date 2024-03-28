@@ -30,6 +30,7 @@ public slots:
     QImage *newFrame();
     void setTool(Tool tool);
     void setColor(QColor color);
+    void palletteColorSelected(int index);
     void actionOnPixel(int x, int y);
 
 private:
