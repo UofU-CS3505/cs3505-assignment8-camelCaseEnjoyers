@@ -25,6 +25,7 @@ signals:
 
 public slots:
     void setImage(QImage* image);
+    void savePNG();
 
 private:
     QImage *image;

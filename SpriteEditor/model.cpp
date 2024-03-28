@@ -47,3 +47,4 @@ void Model::actionOnPixel(int x, int y)
         break;
     }
 }
+

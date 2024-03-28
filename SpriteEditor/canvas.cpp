@@ -3,6 +3,8 @@
 #include <QColor>
 #include <QMouseEvent>
 #include <QPixmap>
+#include <QFileDialog>
+#include <QImageWriter>
 
 Canvas::Canvas(QWidget* parent)
     : QLabel(parent)
@@ -27,4 +29,10 @@ void Canvas::setImage(QImage *image)
 {
     this->image = image;
     setPixmap(QPixmap::fromImage(image->scaled(width(), height())));
+}
+void Canvas::savePNG(){
+    QString fileName = QFileDialog::getSaveFileName(this,tr("Save File"), QDir::homePath(), tr("Images (*.png)"));
+    QImageWriter writer(fileName);
+    writer.write(*image);
+
 }

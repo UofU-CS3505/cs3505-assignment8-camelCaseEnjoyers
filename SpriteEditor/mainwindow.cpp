@@ -19,6 +19,10 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &Model::currentFrameChanged,
             ui->canvas,
             &Canvas::setImage);
+    connect(ui -> exportBtn,
+            &QPushButton::clicked,
+            ui -> canvas,
+            &Canvas::savePNG);
 }
 
 MainWindow::~MainWindow()
