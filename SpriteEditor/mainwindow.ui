@@ -27,7 +27,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="colorPickBtn">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -40,7 +40,7 @@
         <string>Pick Color</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="saveBtn">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -53,7 +53,7 @@
         <string>Save</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="exportBtn">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -79,7 +79,7 @@
         <string>Undo</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="eraseToggle">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -92,7 +92,7 @@
         <string>Eraser</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_2">
+      <widget class="QCheckBox" name="penToggle">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -115,7 +115,7 @@
      <x>0</x>
      <y>0</y>
      <width>926</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
