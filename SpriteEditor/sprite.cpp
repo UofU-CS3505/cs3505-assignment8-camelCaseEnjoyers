@@ -17,6 +17,12 @@ QImage *Sprite::addFrame()
     return &frames.last();
 }
 
+QImage *Sprite::deleteFrame(int index)
+{
+    frames.erase(frames.begin() + index - 1);
+    return &frames[index - 1];
+}
+
 QImage *Sprite::getFrame(int index)
 {
     if (index < 0)
@@ -27,5 +33,6 @@ QImage *Sprite::getFrame(int index)
     {
         return &frames.last();
     }
+    amtOfFrames = frames.size();
     return &frames[index];
 }

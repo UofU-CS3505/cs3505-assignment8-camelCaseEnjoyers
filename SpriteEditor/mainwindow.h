@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include "model.h"
-
+#include "previewanimation.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -35,8 +35,11 @@ private slots:
 
     void on_colorhistorybtn4_clicked();
 
+    void on_playAnimation_clicked();
+
 private:
     Ui::MainWindow *ui;
     Model *model;
+    previewAnimation Animation;
 };
 #endif // MAINWINDOW_H

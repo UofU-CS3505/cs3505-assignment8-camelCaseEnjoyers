@@ -10,7 +10,9 @@ class Sprite
 public:
     Sprite(int size, const QColor &background);
     QImage *addFrame();
+    QImage *deleteFrame(int);
     QImage *getFrame(int index = 0);
+    int amtOfFrames;
 
 private:
     int size;

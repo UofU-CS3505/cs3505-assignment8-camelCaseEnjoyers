@@ -1,16 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QColorDialog>
+#include <iostream>
 
 MainWindow::MainWindow(Model *model, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , model(model)
+    , Animation(model)
 {
     ui->setupUi(this);
-
-
     ui->canvas->setImage(model->getCurrentFrame());
+    ui->chooseFrame->setMinimum(1);
     connect(ui->canvas,
             &Canvas::mouseOnPixel,
             model,
@@ -19,6 +20,18 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &Model::currentFrameChanged,
             ui->canvas,
             &Canvas::setImage);
+    connect(ui ->addFrame,
+            &QPushButton::clicked,
+            model,
+            &Model::newFrame);
+    connect(ui ->deleteFramebtn,
+            &QPushButton::clicked,
+            model,
+            &Model::deleteFrame);
+    connect(ui -> chooseFrame,
+            &QSpinBox::valueChanged,
+            model,
+            &Model::selectFrame);
     connect(ui -> exportBtn,
             &QPushButton::clicked,
             ui -> canvas,
@@ -35,6 +48,10 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &MainWindow::userPalletteSelect,
             model,
             &Model::palletteColorSelected);
+    connect(model,
+            &Model::changeFrameNum,
+             ui->chooseFrame,
+            &QSpinBox::setValue);
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +59,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_playAnimation_clicked(){
+    Animation.show();
+}
 
 void MainWindow::updateHistoryPallette(QColor colors[])
 {
@@ -82,6 +102,7 @@ void MainWindow::on_colorPickBtn_clicked()
 
 void MainWindow::on_colorhistorybtn1_clicked()
 {
+    std::cout<<"clicked btn1"<<std::endl;
     emit userPalletteSelect(1);
 }
 void MainWindow::on_colorhistorybtn2_clicked()

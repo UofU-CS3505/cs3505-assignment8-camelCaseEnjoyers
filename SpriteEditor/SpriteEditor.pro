@@ -13,16 +13,19 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
-    sprite.cpp
+    sprite.cpp \
+    previewanimation.cpp
 
 HEADERS += \
     canvas.h \
     mainwindow.h \
     model.h \
-    sprite.h
+    sprite.h \
+    previewanimation.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    previewanimation.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
