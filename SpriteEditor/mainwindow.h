@@ -18,6 +18,22 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(Model *model, QWidget *parent = nullptr);
     ~MainWindow();
+signals:
+    void userSelectedColor(QColor color);
+    void userPalletteSelect(int btnNum);
+public slots:
+    void updateHistoryPallette(QColor colors[]);
+
+private slots:
+    void on_colorPickBtn_clicked();
+
+    void on_colorhistorybtn1_clicked();
+
+    void on_colorhistorybtn2_clicked();
+
+    void on_colorhistorybtn3_clicked();
+
+    void on_colorhistorybtn4_clicked();
 
 private:
     Ui::MainWindow *ui;

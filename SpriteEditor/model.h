@@ -23,12 +23,14 @@ public:
 
 signals:
     void currentFrameChanged(QImage *frame);
+    void updateColorPallette(QColor colors[]);
 
 public slots:
     QImage *newSprite(int size);
     QImage *newFrame();
     void setTool(Tool tool);
     void setColor(QColor color);
+    void palletteColorSelected(int index);
     void actionOnPixel(int x, int y);
 
 private:
@@ -36,6 +38,8 @@ private:
     QImage *currentFrame;
     Tool currentTool;
     QColor currentColor;
+    QColor recentColors[5];
+    bool checkHistory(QColor newColor);
 
 public:
     static constexpr int defaultSpriteSize = 32;
