@@ -22,10 +22,15 @@ private:
 
 signals:
     void mouseOnPixel(int x, int y);
+    void saveSpriteName(QString filename);
+    void loadSpriteName(QString filename);
+
 
 public slots:
     void setImage(QImage* image);
     void savePNG();
+    void save();
+    void load();
 
 private:
     QImage *image;

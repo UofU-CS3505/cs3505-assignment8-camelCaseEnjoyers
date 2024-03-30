@@ -1,6 +1,10 @@
 #include "model.h"
 #include <iostream>
 #include <QTimer>
+#include <QFileDialog>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 Model::Model(QObject *parent)
     : QObject(parent)
@@ -125,5 +129,153 @@ void Model::selectFrame(int frame){
     currentFrame = sprite.getFrame(frame - 1);
     frameNum = frame;
     emit currentFrameChanged(currentFrame);
+}
+
+void Model::saveSprite(QString filename){
+    //create file associated with directory from the view
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    //holds all Sprite data
+    QJsonObject jsonSprite;
+    //holds each frame of the sprite
+    QJsonArray frames;
+    int r;
+    int g;
+    int b;
+    int a;
+
+    for(QImage frame: sprite.frames){
+
+        QJsonArray pixels;
+
+        //iterate through each pixel of the current frame
+        for(int i = 0; i < sprite.size; i++){
+            for(int j = 0; j < sprite.size; j++){
+                //extract colors from the pixel
+                QColor color = frame.pixel(j,i);
+                r = color.red();
+                g = color.green();
+                b = color.blue();
+                a = color.alpha();
+                //create pixel Json object to store color data
+                QJsonObject pixel;
+
+                pixel.insert("red", r);
+                pixel.insert("green", g);
+                pixel.insert("blue", b);
+                pixel.insert("alpha", a);
+                //add pixel to the frame
+                pixels.append(pixel);
+            }
+        }
+        //add the frame to the list of frames
+        frames.append(pixels);
+    }
+
+    //store background color
+    r = sprite.background.red();
+    g = sprite.background.green();
+    b = sprite.background.blue();
+    a = sprite.background.alpha();
+    QJsonObject background;
+    background.insert("red", r);
+    background.insert("green", g);
+    background.insert("blue", b);
+    background.insert("alpha", a);
+
+    jsonSprite.insert("background", background);
+    jsonSprite.insert("frames", frames);
+    jsonSprite.insert("size", sprite.size);
+
+    //turn Json object to Json and write it to the file
+    QJsonDocument document;
+    document.setObject(jsonSprite);
+    QByteArray bytes = document.toJson( QJsonDocument::Indented );
+    QTextStream iStream( &file );
+    iStream << bytes;
+    file.close();
+}
+
+void Model::loadSprite(QString filename){
+    //load filename recived from the view
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly))
+        return;
+
+    //read all data in the file
+    QByteArray bytes = file.readAll();
+    file.close();
+
+    //check for an error in the Json
+    QJsonParseError jsonError;
+    QJsonDocument document = QJsonDocument::fromJson( bytes, &jsonError );
+    if( jsonError.error != QJsonParseError::NoError )
+    {
+        std::cout << "fromJson failed: " << jsonError.errorString().toStdString() << std::endl;
+        return ;
+    }
+    if(document.isObject()){
+        //turn text into Json object
+        QJsonObject jsonSprite = document.object();
+
+        //extract background and size information from Json object
+        int size = jsonSprite.take("size").toInt();
+        QJsonObject background = jsonSprite.take("background").toObject();
+        QColor back;
+        back.setRed(background.take("red").toInt());
+        back.setGreen(background.take("green").toInt());
+        back.setBlue(background.take("blue").toInt());
+        back.setAlpha(background.take("alpha").toInt());
+
+        //create new sprite with the saved background color and size
+        sprite = Sprite(size, back);
+
+        QJsonArray frames = jsonSprite.take("frames").toArray();
+        QVector<QImage> images;
+
+        //iterate through The Json array
+        for(QJsonValue pixels: frames){
+            QImage curFrame(size, size, QImage::Format_ARGB32);
+            QJsonArray pixelAr = pixels.toArray();
+
+            int xCord = 0;
+            int yCord = 0;
+            //for each pixel in the current frame
+            for(QJsonValue color: pixelAr){
+
+                //extract the pixel color
+                QJsonObject curCol = color.toObject();
+                int r = curCol.take("red").toInt();
+                int g = curCol.take("green").toInt();
+                int b = curCol.take("blue").toInt();
+                int a = curCol.take("alpha").toInt();
+                QColor pixelColor;
+                pixelColor.setRed(r);
+                pixelColor.setGreen(g);
+                pixelColor.setBlue(b);
+                pixelColor.setAlpha(a);
+
+                //set current pixel at current postion to the correct color
+                curFrame.setPixelColor(xCord, yCord, pixelColor);
+
+                //incriment coordinate position values
+                xCord++;
+                if(xCord == size){
+                    xCord = 0;
+                    yCord++;
+                    continue;
+                }
+            }
+            images.append(curFrame);
+        }
+
+        //set sprite frames array to new decoded array
+        sprite.frames = images;
+        currentFrame = &sprite.frames.first();
+        //tell the canvas the frame has changed to update front end
+        emit currentFrameChanged(&sprite.frames.first());
+    }
 }
 

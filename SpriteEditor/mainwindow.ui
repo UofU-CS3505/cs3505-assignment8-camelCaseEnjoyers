@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>30</y>
+      <y>60</y>
       <width>71</width>
       <height>32</height>
      </rect>
@@ -256,6 +256,19 @@
      <string>Current Frame</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="loadBtn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>71</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -263,7 +276,7 @@
      <x>0</x>
      <y>0</y>
      <width>926</width>
-     <height>37</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">

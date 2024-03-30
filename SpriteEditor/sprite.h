@@ -13,11 +13,11 @@ public:
     QImage *deleteFrame(int);
     QImage *getFrame(int index = 0);
     int amtOfFrames;
-
-private:
     int size;
     QColor background;
     QVector<QImage> frames;
+
+private:
 };
 
 #endif // SPRITE_H

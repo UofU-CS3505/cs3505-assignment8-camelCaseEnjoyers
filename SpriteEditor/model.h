@@ -38,6 +38,8 @@ public slots:
     void previewAnimation();
     void selectFrame(int);
     void changeFrameRate(int);
+    void saveSprite(QString filename);
+    void loadSprite(QString filename);
 
 private:
     Sprite sprite;

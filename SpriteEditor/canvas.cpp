@@ -36,3 +36,14 @@ void Canvas::savePNG(){
     writer.write(*image);
 
 }
+
+void Canvas::save(){
+    QString fileName = QFileDialog::getSaveFileName(this,tr("Save File"), QDir::homePath(), tr("SPP File (*.ssp)"));
+    emit saveSpriteName(fileName);
+}
+
+void Canvas::load(){
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Load File"), QDir::homePath(), tr("SPP File (*.ssp)"));
+    emit loadSpriteName(fileName);
+}
+

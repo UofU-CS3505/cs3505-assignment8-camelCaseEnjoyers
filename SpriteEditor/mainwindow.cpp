@@ -52,6 +52,23 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &Model::changeFrameNum,
              ui->chooseFrame,
             &QSpinBox::setValue);
+
+    connect(ui -> saveBtn,
+            &QPushButton::clicked,
+            ui -> canvas,
+            &Canvas::save);
+    connect(ui -> canvas,
+            &Canvas::saveSpriteName,
+            model,
+            &Model::saveSprite);
+    connect(ui -> loadBtn,
+            &QPushButton::clicked,
+            ui -> canvas,
+            &Canvas::load);
+    connect(ui -> canvas,
+            &Canvas::loadSpriteName,
+            model,
+            &Model::loadSprite);
 }
 
 MainWindow::~MainWindow()
