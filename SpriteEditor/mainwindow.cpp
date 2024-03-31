@@ -12,6 +12,7 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
     ui->setupUi(this);
     ui->canvas->setImage(model->getCurrentFrame());
     ui->chooseFrame->setMinimum(1);
+    ui->chooseFrame->setMaximum(1);
     connect(ui->canvas,
             &Canvas::mouseOnPixel,
             model,
@@ -24,6 +25,10 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &QPushButton::clicked,
             model,
             &Model::newFrame);
+    connect(model,
+            &Model::frameMax,
+            ui->chooseFrame,
+            &QSpinBox::setMaximum);
     connect(ui ->deleteFramebtn,
             &QPushButton::clicked,
             model,

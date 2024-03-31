@@ -29,8 +29,18 @@ signals:
     void currentFrameChanged(QImage *frame);
     void currentFrameChangedAnimation(QImage *frame);
     void updateColorPallette(QColor colors[]);
+    ///
+    /// \brief disables preview button when the animation is playing
+    ///
     void previewPressed(bool);
+    ///
+    /// \brief sets the value of the current QImage frame to whatever is in the spinBox
+    ///
     void changeFrameNum(int);
+    ///
+    /// \brief sets a max frame number so that the user cannot go to a frame that does not exist
+    ///
+    void frameMax(int);
 
 public slots:
     QImage *newSprite(int size);
@@ -40,8 +50,19 @@ public slots:
     void setColor(QColor color);
     void palletteColorSelected(int index);
     void actionOnPixel(int x, int y);
+    ///
+    /// \brief displays the animation sequence at the desired framerate
+    ///
     void previewAnimation();
+    ///
+    /// \brief when the value of the spinbox chooseFrame is altered, is selects the
+    ///  frame that matches the number in spinbox
+    ///
     void selectFrame(int);
+    ///
+    /// \brief alters the framerate for the animation sequence based off of the
+    /// slider and the spinbox
+    ///
     void changeFrameRate(int);
 
     /// \brief slot that responds to the saveSpriteName signal in the canvas. Recives the filename the user specified

@@ -16,7 +16,7 @@ public:
     QImage *addFrame();
     QImage *deleteFrame(int);
     QImage *getFrame(int index = 0);
-    int amtOfFrames;
+    int getAmountOfFrames();
     int size;
     QColor background;
     QVector<QImage> frames;

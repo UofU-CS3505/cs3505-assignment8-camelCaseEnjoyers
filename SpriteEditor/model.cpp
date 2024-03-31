@@ -33,6 +33,7 @@ QImage *Model::newFrame()
 {
     currentFrame = sprite.addFrame();
     frameNum += 1;
+    emit frameMax(sprite.getAmountOfFrames());
     emit changeFrameNum(frameNum);
     emit currentFrameChanged(currentFrame);
     return currentFrame;
@@ -40,9 +41,11 @@ QImage *Model::newFrame()
 
 QImage *Model::deleteFrame(){
     currentFrame = sprite.deleteFrame(frameNum);
-    frameNum -= 1;
+    if(frameNum != 1)
+        frameNum -= 1;
     emit changeFrameNum(frameNum);
     emit currentFrameChanged(currentFrame);
+    emit frameMax(sprite.getAmountOfFrames());
     return currentFrame;
 }
 
@@ -117,11 +120,11 @@ void Model::previewAnimation(){
     sprite.getFrame(0);
     emit previewPressed(false);
     int waitTime;
-    for(int i = 0; i < sprite.amtOfFrames; i++){
+    for(int i = 0; i < sprite.getAmountOfFrames(); i++){
         waitTime = i * (1000/frameRate);
         QTimer::singleShot(waitTime, this, [=]{emit currentFrameChangedAnimation(sprite.getFrame(i)); return sprite.getFrame(i);});
     }
-    waitTime = sprite.amtOfFrames * 1000/frameRate;
+    waitTime = sprite.getAmountOfFrames() * 1000/frameRate;
     QTimer::singleShot(waitTime, this, [=]{emit previewPressed(true);});
 }
 
@@ -273,7 +276,7 @@ void Model::loadSprite(QString filename){
 
         //set sprite frames array to new decoded array
         sprite.frames = images;
-        sprite.amtOfFrames = images.length();
+        sprite.getAmountOfFrames();
         currentFrame = &sprite.frames.first();
         //tell the canvas the frame has changed to update front end
         emit currentFrameChanged(&sprite.frames.first());
