@@ -273,6 +273,7 @@ void Model::loadSprite(QString filename){
 
         //set sprite frames array to new decoded array
         sprite.frames = images;
+        sprite.amtOfFrames = images.length();
         currentFrame = &sprite.frames.first();
         //tell the canvas the frame has changed to update front end
         emit currentFrameChanged(&sprite.frames.first());

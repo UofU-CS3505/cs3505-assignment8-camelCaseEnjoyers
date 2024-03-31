@@ -4,6 +4,9 @@
 #include <QLabel>
 #include <QImage>
 
+///
+/// \brief The Canvas class records mouse data from the user that is utilized to draw pixels on the canvas.
+///
 class Canvas : public QLabel
 {
     Q_OBJECT
@@ -22,17 +25,24 @@ private:
 
 signals:
     void mouseOnPixel(int x, int y);
+    ///signals model to save the current sprite at the specified filename
     void saveSpriteName(QString filename);
+    ///signals model to load a sprite from the specified filename
     void loadSpriteName(QString filename);
 
 
 public slots:
+    ///sets the current image the canvas is displaying
     void setImage(QImage* image);
+    ///opens a save file dialog when a signal is sent from the export As button being pressed
     void savePNG();
+    ///opens a save file dialog when a signal is sent from the save button being pressed
     void save();
+    ///opens a load file dialog when a signal is sent from the load button being pressed
     void load();
 
 private:
+    ///a pointer to the current image being displayed by the canvas
     QImage *image;
 };
 

@@ -11,6 +11,10 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+///
+/// \brief The MainWindow class connects the view to the model. It contains an instance of the model and the Ui, and
+/// it connects all signals to slots, allowing the front and backend to communicate appropriately.
+///
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

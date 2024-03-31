@@ -5,6 +5,10 @@
 #include <QImage>
 #include <QVector>
 
+///
+/// \brief The Sprite class contains all the data necessary to represent a sprite that can be edited and displayed
+/// with the program. It contains all visual data on the sprite, how many frames it has, and its actual size.
+///
 class Sprite
 {
 public:
@@ -16,8 +20,6 @@ public:
     int size;
     QColor background;
     QVector<QImage> frames;
-
-private:
 };
 
 #endif // SPRITE_H
