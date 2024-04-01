@@ -55,7 +55,13 @@ public slots:
     /// @brief changes the user's pen color to one of their 5 most recently used colors
     /// @param index an int that represents the index of the color in the recent colors array. corresponds to button number in the view
     void palletteColorSelected(int index);
+    /// @brief triggered when the eraser is selected. changes the pen color to clear and locks the ability to change colors.
+    void eraserSelected();
+    /// @brief triggered when the pen is selected. changes the pen color to the users most recent color and reenables the ability to change colors
+    void penSelected();
+
     void actionOnPixel(int x, int y);
+
     ///
     /// \brief displays the animation sequence at the desired framerate
     ///
@@ -101,6 +107,10 @@ private:
     int frameRate = 1;
     ///represents which frame the model is currently displaying
     int frameNum = 1;
+    ///A custom color the represents the eraser. Used to prevent the color pallette from updating abnormally when selecting the eraser
+    QColor transparent;
+    ///A bool representing the eraser state. false if the eraser is not in use and true otherwise
+    bool eraserState;
 
 public:
     ///size the sprite will be if not otherwise specifed by the user

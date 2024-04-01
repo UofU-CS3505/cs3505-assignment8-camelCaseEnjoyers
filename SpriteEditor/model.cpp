@@ -19,6 +19,9 @@ Model::Model(QObject *parent)
     //Initialize color array to usable white instances
     for(int i = 1; i<5;i++)
         recentColors[i] = QColor(QColorConstants::White);
+    transparent = QColor(QColorConstants::White);
+    transparent.setAlpha(0);
+    eraserState = false;
 }
 
 QImage *Model::newSprite(int size)
@@ -54,8 +57,26 @@ void Model::setTool(Tool tool)
     currentTool = tool;
 }
 
+void Model::eraserSelected()
+{
+    eraserState = true;
+    setColor(transparent);
+}
+void Model::penSelected()
+{
+    eraserState = false;
+    setColor(recentColors[0]);
+}
+
 void Model::setColor(QColor color)
 {
+    if(color == transparent)
+    {
+        currentColor = transparent;
+        return;
+    }
+    if(eraserState == true)
+        return;
     //Check to see if the color the user chose is one they recently used
     if(!checkHistory(color))//This method
     {
@@ -69,8 +90,10 @@ void Model::setColor(QColor color)
 
     //And set the color to the newly selected color
     currentColor = color;
+    //Do not update the view if we are changing to the eraser
+    if(color == transparent)
+        return;
     //Notify the view
-
     emit updateColorPallette(recentColors);
 
 }

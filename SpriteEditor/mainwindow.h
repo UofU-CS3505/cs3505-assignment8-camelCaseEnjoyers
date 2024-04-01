@@ -29,6 +29,10 @@ signals:
     /// @brief tells the model that the user selected acolor from the color pallette.
     /// @param number corresponding to the button selected 0-4
     void userPalletteSelect(int btnNum);
+    /// @brief signals eraser select to the model
+    void eraserSelected();
+    /// @brief signals pen select to model
+    void penSelected();
 public slots:
     /// @brief changes the appearance of the view's color pallette to match the 5 most recent colors used by the user
     /// @param colors the array of colors to be represented
@@ -49,13 +53,17 @@ private slots:
 
     void on_playAnimation_clicked();
 
+    /// @brief notifies the model to update the tool to the pen
     void on_penToggle_clicked();
 
+    /// @brief notifies the model to update the tool to eraser
     void on_eraseToggle_clicked();
 
 private:
     Ui::MainWindow *ui;
     Model *model;
     previewAnimation Animation;
+    /// A color that designates the eraser
+    QColor transparent;
 };
 #endif // MAINWINDOW_H

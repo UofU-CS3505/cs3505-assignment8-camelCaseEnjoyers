@@ -73,6 +73,16 @@ MainWindow::MainWindow(Model *model, QWidget *parent)
             &Canvas::loadSpriteName,
             model,
             &Model::loadSprite);
+    connect(this,
+            &MainWindow::eraserSelected,
+            model,
+            &Model::eraserSelected);
+    connect(this,
+            &MainWindow::penSelected,
+            model,
+            &Model::penSelected);
+    transparent = QColor(QColorConstants::White);
+    transparent.setAlpha(0);
 }
 
 MainWindow::~MainWindow()
@@ -145,6 +155,7 @@ void MainWindow::on_penToggle_clicked()
 {
     ui->penToggle->setChecked(true);
     ui->eraseToggle->setChecked(false);
+    emit penSelected();
 }
 
 
@@ -152,5 +163,6 @@ void MainWindow::on_eraseToggle_clicked()
 {
     ui->penToggle->setChecked(false);
     ui->eraseToggle->setChecked(true);
+    emit eraserSelected();
 }
 
