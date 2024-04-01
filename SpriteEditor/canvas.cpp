@@ -1,5 +1,5 @@
+// Style Review completed by: Name Here
 #include "canvas.h"
-
 #include <QColor>
 #include <QMouseEvent>
 #include <QPixmap>
