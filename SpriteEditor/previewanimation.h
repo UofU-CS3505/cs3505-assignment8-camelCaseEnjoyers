@@ -13,13 +13,13 @@ class previewAnimation : public QMainWindow
 {
     Q_OBJECT
 
-    public:
-        explicit previewAnimation(Model *model,QWidget *parent = nullptr);
-        ~previewAnimation();
-    
-    private:
-        Ui::previewAnimation *ui;
-        Model *model;
+public:
+    explicit previewAnimation(Model *model,QWidget *parent = nullptr);
+    ~previewAnimation();
+
+private:
+    Ui::previewAnimation *ui;
+    Model *model;
 };
 
 #endif // PREVIEWANIMATION_H
