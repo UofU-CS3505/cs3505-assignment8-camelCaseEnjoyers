@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QColorDialog>
-#include <iostream>
 
 MainWindow::MainWindow(Model *model, QWidget *parent)
     : QMainWindow(parent)
@@ -124,7 +123,6 @@ void MainWindow::on_colorPickBtn_clicked()
 
 void MainWindow::on_colorhistorybtn1_clicked()
 {
-    std::cout<<"clicked btn1"<<std::endl;
     emit userPalletteSelect(1);
 }
 void MainWindow::on_colorhistorybtn2_clicked()
@@ -138,5 +136,21 @@ void MainWindow::on_colorhistorybtn3_clicked()
 void MainWindow::on_colorhistorybtn4_clicked()
 {
     emit userPalletteSelect(4);
+}
+
+
+
+
+void MainWindow::on_penToggle_clicked()
+{
+    ui->penToggle->setChecked(true);
+    ui->eraseToggle->setChecked(false);
+}
+
+
+void MainWindow::on_eraseToggle_clicked()
+{
+    ui->penToggle->setChecked(false);
+    ui->eraseToggle->setChecked(true);
 }
 

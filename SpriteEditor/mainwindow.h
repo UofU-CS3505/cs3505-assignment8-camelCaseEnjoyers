@@ -23,23 +23,35 @@ public:
     MainWindow(Model *model, QWidget *parent = nullptr);
     ~MainWindow();
 signals:
+    /// @brief tells the model which color the user selected
+    /// @param the color chosen by the user in the color pick menu
     void userSelectedColor(QColor color);
+    /// @brief tells the model that the user selected acolor from the color pallette.
+    /// @param number corresponding to the button selected 0-4
     void userPalletteSelect(int btnNum);
 public slots:
+    /// @brief changes the appearance of the view's color pallette to match the 5 most recent colors used by the user
+    /// @param colors the array of colors to be represented
     void updateHistoryPallette(QColor colors[]);
 
 private slots:
+    /// @brief sends a signal to the model containing the color the user wants to swap to
     void on_colorPickBtn_clicked();
 
+    /// @brief sends a signal that the color in box #2 has been selected to the model
     void on_colorhistorybtn1_clicked();
-
+    /// @brief sends a signal that the color in box #3 has been selected to the model
     void on_colorhistorybtn2_clicked();
-
+    /// @brief sends a signal that the color in box #4 has been selected to the model
     void on_colorhistorybtn3_clicked();
-
+    /// @brief sends a signal that the color in box #5 has been selected to the model
     void on_colorhistorybtn4_clicked();
 
     void on_playAnimation_clicked();
+
+    void on_penToggle_clicked();
+
+    void on_eraseToggle_clicked();
 
 private:
     Ui::MainWindow *ui;

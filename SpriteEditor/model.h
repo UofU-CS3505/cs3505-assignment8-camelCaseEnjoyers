@@ -28,6 +28,7 @@ public:
 signals:
     void currentFrameChanged(QImage *frame);
     void currentFrameChangedAnimation(QImage *frame);
+    /// \brief signals the view to update the colors displayed on the history pallette
     void updateColorPallette(QColor colors[]);
     ///
     /// \brief disables preview button when the animation is playing
@@ -47,7 +48,12 @@ public slots:
     QImage *newFrame();
     QImage *deleteFrame();
     void setTool(Tool tool);
+
+    /// @brief changes the user's pen color in the model
+    /// @param color the color that the user selected(sent by the view)
     void setColor(QColor color);
+    /// @brief changes the user's pen color to one of their 5 most recently used colors
+    /// @param index an int that represents the index of the color in the recent colors array. corresponds to button number in the view
     void palletteColorSelected(int index);
     void actionOnPixel(int x, int y);
     ///
@@ -87,6 +93,9 @@ private:
     QColor currentColor;
     ///array that is used to store the last 5 colors the user drew with
     QColor recentColors[5];
+    /// @brief Checks to see if the color selected is one used in the past 5 color swaps. Changes the recentColors array to reflect this change if the color is in the last 5
+    /// @param newColor the color provided to this method by the setColor method
+    /// @return true if the color was recently selected, false if not
     bool checkHistory(QColor newColor);
     ///represents how quickly frames are cycled through when viewing the animation preview
     int frameRate = 1;
