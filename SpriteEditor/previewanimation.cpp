@@ -15,18 +15,22 @@ previewAnimation::previewAnimation(Model *model,QWidget *parent)
             &Model::currentFrameChangedAnimation,
             ui->canvasAnimation,
             &Canvas::setImage);
+    // connection between the previewanimation button and the pop up screen for it 
     connect(ui->previewAnimation_2,
             &QPushButton::clicked,
             model,
             &Model::previewAnimation);
+    // starts the preview of your animation
     connect(model,
             &Model::previewPressed,
             ui->previewAnimation_2,
             &QPushButton::setEnabled);
+    // tracks what the fps is set to
     connect(ui->spinBox,
             &QSpinBox::valueChanged,
             model,
             &Model::changeFrameRate);
+    // disallows repeated pressed of the preview till the end of the preview
     connect(model,
             &Model::previewPressed,
             ui-> spinBox,
