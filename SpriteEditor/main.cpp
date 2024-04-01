@@ -1,5 +1,5 @@
+// Style Review completed by: Joshua Gundersen
 #include "mainwindow.h"
-
 #include <QApplication>
 
 int main(int argc, char *argv[])
