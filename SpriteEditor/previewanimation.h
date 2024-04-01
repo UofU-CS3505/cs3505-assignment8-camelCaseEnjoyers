@@ -7,7 +7,7 @@
 namespace Ui {
 class previewAnimation;
 }
-
+// Sets up a class that will allow for the viewing of your different sprites in different frames per second. 
 class previewAnimation : public QMainWindow
 {
     Q_OBJECT
