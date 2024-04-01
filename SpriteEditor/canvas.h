@@ -1,3 +1,4 @@
+// Style Review completed by: Name Here
 #ifndef CANVAS_H
 #define CANVAS_H
 
