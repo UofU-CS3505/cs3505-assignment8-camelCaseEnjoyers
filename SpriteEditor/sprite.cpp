@@ -1,3 +1,4 @@
+// Style Review completed by: Joshua Gundersen
 #include "sprite.h"
 #include <QColor>
 
