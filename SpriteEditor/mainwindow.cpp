@@ -1,3 +1,4 @@
+// Style Review completed by: Name Here
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QColorDialog>
