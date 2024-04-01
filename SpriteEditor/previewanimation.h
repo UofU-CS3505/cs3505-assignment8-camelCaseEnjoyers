@@ -1,4 +1,4 @@
-// Style Review completed by: 
+// Style Review completed by: Name Here
 #ifndef PREVIEWANIMATION_H
 #define PREVIEWANIMATION_H
 
