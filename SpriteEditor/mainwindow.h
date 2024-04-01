@@ -1,4 +1,4 @@
-// Style Review completed by: Name Here
+// Style Review completed by: Isaac Hall
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
