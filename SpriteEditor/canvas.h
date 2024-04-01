@@ -1,4 +1,4 @@
-// Style Review completed by: Name Here
+// Style Review completed by: Isaac Hall
 #ifndef CANVAS_H
 #define CANVAS_H
 
