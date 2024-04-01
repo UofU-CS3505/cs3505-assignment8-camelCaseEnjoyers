@@ -181,7 +181,7 @@ void Model::saveSprite(QString filename){
         for(int i = 0; i < sprite.size; i++){
             for(int j = 0; j < sprite.size; j++){
                 //extract colors from the pixel
-                QColor color = frame.pixel(j,i);
+                QColor color = frame.pixelColor(j,i);
                 r = color.red();
                 g = color.green();
                 b = color.blue();
