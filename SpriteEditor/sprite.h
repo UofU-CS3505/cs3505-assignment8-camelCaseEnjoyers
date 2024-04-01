@@ -1,3 +1,4 @@
+// Style Review completed by: Joshua Gundersen
 #ifndef SPRITE_H
 #define SPRITE_H
 
