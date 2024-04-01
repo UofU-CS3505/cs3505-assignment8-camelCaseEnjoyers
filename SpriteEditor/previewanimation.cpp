@@ -36,6 +36,7 @@ previewAnimation::previewAnimation(Model *model,QWidget *parent)
             ui-> spinBox,
             &QSpinBox::setEnabled);
 }
+
 previewAnimation::~previewAnimation()
 {
     delete ui;
