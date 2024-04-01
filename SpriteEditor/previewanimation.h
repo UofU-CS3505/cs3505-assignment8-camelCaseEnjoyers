@@ -1,3 +1,4 @@
+// Style Review completed by: 
 #ifndef PREVIEWANIMATION_H
 #define PREVIEWANIMATION_H
 
