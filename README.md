@@ -9,7 +9,7 @@ The sprite editor allows for the easy creation, modification, and export of spri
 The sprite editor has a color palette that saves the last 5 most recently used colors, allowing users to easily swap between them.
 
 ### Export as PNG
-Our editor allows users to export their current Sprite as a png, so they can utilize their work in other programs. 
+Our editor allows users to export their current Sprite as a png, so they can utilize their work in other programs. Also allows you to export a png into the sprite editor from somewhere else.
 
 # Important Links
 Design Document: https://docs.google.com/document/d/1pKmJtk0tY-z92tygMM4lTsb8RQcLiJLt/edit?usp=sharing&ouid=106633760146979612737&rtpof=true&sd=true
