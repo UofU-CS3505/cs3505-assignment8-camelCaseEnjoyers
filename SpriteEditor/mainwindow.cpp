@@ -169,8 +169,9 @@ void MainWindow::on_newSpriteBtn_clicked()
 {
     bool ok;
     int size = QInputDialog::getInt(this, "Input sprite size", "Sprite size:",
-                                    32, 16, 256, 1, &ok);
+                                    32, 16, 128, 1, &ok);
     if (!ok) return;
     model->newSprite(size);
+    ui->chooseFrame->setValue(1);
 }
 
