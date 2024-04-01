@@ -117,7 +117,7 @@ public:
     ///size the sprite will be if not otherwise specifed by the user
     static constexpr int defaultSpriteSize = 32;
     ///color that the background of the canvas will be filled with by default
-    static inline const QColor backgroundColor = QColor(0, 0, 0, 1);
+    static inline const QColor backgroundColor = QColor(0, 0, 0, 0);
 };
 
 #endif // MODEL_H
