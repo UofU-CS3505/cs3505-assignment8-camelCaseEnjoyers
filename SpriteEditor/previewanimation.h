@@ -1,4 +1,4 @@
-// Style Review completed by: Name Here
+// Style Review completed by: Manya Nair
 #ifndef PREVIEWANIMATION_H
 #define PREVIEWANIMATION_H
 
