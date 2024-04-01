@@ -30,6 +30,8 @@ QImage *Model::newSprite(int size)
     sprite = Sprite(size, backgroundColor);
     currentFrame = sprite.addFrame();
     emit currentFrameChanged(currentFrame);
+    emit changeFrameNum(1);
+    emit frameMax(sprite.getAmountOfFrames());
     return currentFrame;
 }
 
@@ -44,12 +46,12 @@ QImage *Model::newFrame()
 }
 
 QImage *Model::deleteFrame(){
-    currentFrame = sprite.deleteFrame(frameNum);
+    currentFrame = sprite.deleteFrame(frameNum); //sets current frame as the frame before
     if(frameNum != 1)
         frameNum -= 1;
     emit changeFrameNum(frameNum);
     emit currentFrameChanged(currentFrame);
-    emit frameMax(sprite.getAmountOfFrames());
+    emit frameMax(sprite.getAmountOfFrames()); //lowers max amount of frames
     return currentFrame;
 }
 
@@ -141,15 +143,14 @@ void Model::changeFrameRate(int frame){
 }
 
 void Model::previewAnimation(){
-    sprite.getFrame(0);
-    emit previewPressed(false);
+    emit previewPressed(false); //disables preview button
     int waitTime;
     for(int i = 0; i < sprite.getAmountOfFrames(); i++){
-        waitTime = i * (1000/frameRate);
+        waitTime = i * (1000/frameRate); // queues each image to appear at a set frame rate
         QTimer::singleShot(waitTime, this, [=]{emit currentFrameChangedAnimation(sprite.getFrame(i)); return sprite.getFrame(i);});
     }
     waitTime = sprite.getAmountOfFrames() * 1000/frameRate;
-    QTimer::singleShot(waitTime, this, [=]{emit previewPressed(true);});
+    QTimer::singleShot(waitTime, this, [=]{emit previewPressed(true);}); //once animation is finishes re-enables button
 }
 
 void Model::selectFrame(int frame){
