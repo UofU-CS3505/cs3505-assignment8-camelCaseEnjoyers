@@ -11,15 +11,15 @@
 ///
 class Sprite
 {
-    public:
-        Sprite(int size, const QColor &background);
-        QImage *addFrame();
-        QImage *deleteFrame(int);
-        QImage *getFrame(int index = 0);
-        int getAmountOfFrames();
-        int size;
-        QColor background;
-        QVector<QImage> frames;
+public:
+    Sprite(int size, const QColor &background);
+    QImage *addFrame();
+    QImage *deleteFrame(int);
+    QImage *getFrame(int index = 0);
+    int getAmountOfFrames();
+    int size;
+    QColor background;
+    QVector<QImage> frames;
 };
 
 #endif // SPRITE_H
