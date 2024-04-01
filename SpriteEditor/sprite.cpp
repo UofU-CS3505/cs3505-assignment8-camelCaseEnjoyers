@@ -1,5 +1,4 @@
 #include "sprite.h"
-
 #include <QColor>
 
 Sprite::Sprite(int size, const QColor &background)
