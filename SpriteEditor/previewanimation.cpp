@@ -1,4 +1,4 @@
-// Style Review completed by: Name Here
+// Style Review completed by: Manya Nair
 #include "previewanimation.h"
 #include "ui_previewanimation.h"
 
