@@ -204,7 +204,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>110</y>
+      <y>100</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -217,7 +217,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>150</y>
+      <y>160</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -275,6 +275,19 @@
      <string>Load</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="newSpriteBtn">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>New Sprite</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -282,21 +295,9 @@
      <x>0</x>
      <y>0</y>
      <width>926</width>
-     <height>26</height>
+     <height>24</height>
     </rect>
    </property>
-   <widget class="QMenu" name="fileMenu">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="newSpriteAction"/>
-    <addaction name="newFrameAction"/>
-    <addaction name="separator"/>
-    <addaction name="loadAction"/>
-    <addaction name="saveAction"/>
-    <addaction name="exportAction"/>
-   </widget>
-   <addaction name="fileMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="newSpriteAction">

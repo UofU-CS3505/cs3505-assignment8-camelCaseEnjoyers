@@ -60,6 +60,8 @@ private slots:
     /// @brief notifies the model to update the tool to eraser
     void on_eraseToggle_clicked();
 
+    void on_newSpriteBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     Model *model;

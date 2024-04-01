@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QColorDialog>
+#include <QInputDialog>
 
 MainWindow::MainWindow(Model *model, QWidget *parent)
     : QMainWindow(parent)
@@ -144,13 +145,11 @@ void MainWindow::on_colorhistorybtn3_clicked()
 {
     emit userPalletteSelect(3);
 }
+
 void MainWindow::on_colorhistorybtn4_clicked()
 {
     emit userPalletteSelect(4);
 }
-
-
-
 
 void MainWindow::on_penToggle_clicked()
 {
@@ -159,11 +158,19 @@ void MainWindow::on_penToggle_clicked()
     emit penSelected();
 }
 
-
 void MainWindow::on_eraseToggle_clicked()
 {
     ui->penToggle->setChecked(false);
     ui->eraseToggle->setChecked(true);
     emit eraserSelected();
+}
+
+void MainWindow::on_newSpriteBtn_clicked()
+{
+    bool ok;
+    int size = QInputDialog::getInt(this, "Input sprite size", "Sprite size:",
+                                    32, 16, 256, 1, &ok);
+    if (!ok) return;
+    model->newSprite(size);
 }
 
