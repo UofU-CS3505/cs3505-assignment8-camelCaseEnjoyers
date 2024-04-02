@@ -60,6 +60,7 @@ private slots:
     /// @brief notifies the model to update the tool to eraser
     void on_eraseToggle_clicked();
 
+    /// @brief creates a new sprite
     void on_newSpriteBtn_clicked();
 
 private:
