@@ -1,4 +1,4 @@
-// Style Review completed by: Name Here
+// Style Review completed by: Jianjian Huang
 #include "mainwindow.h"
 #include <QApplication>
 
